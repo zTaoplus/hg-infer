@@ -1,1 +1,1 @@
-From ghcr.io/huggingface/text-generation-inference:latest
+From ghcr.io/huggingface/text-generation-inference@sha256:ccdf9e0c30c271790ed88bb9645e0f8730af23fe4415a3ad6b991aff6d6bb012
