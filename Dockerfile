@@ -1,3 +1,1 @@
-FROM ghcr.io/huggingface/text-generation-inference:latest
-
-RUN sed '817s/word_embeddings/transformer.word_embeddings/' /usr/src/server/text_generation_server/models/custom_modeling/bloom_modeling.py | tee /usr/src/server/text_generation_server/models/custom_modeling/bloom_modeling.py
+FROM ghcr.io/huggingface/text-generation-inference:0.9.0
