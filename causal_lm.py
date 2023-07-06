@@ -565,8 +565,6 @@ class CausalLM(Model):
             all_input_ids,
         ) in enumerate(iterator):
             # Select next token
-            print(f"logits:{logits},shape:{logits.shape}")
-            print(f"logits slice:{logits[-1:, :]},shape:{logits[-1:, :].shape}")
             next_token_id, logprobs = next_token_chooser(
                 all_input_ids.view(1, -1), logits[-1:, :]
             )

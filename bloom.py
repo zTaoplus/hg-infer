@@ -56,17 +56,10 @@ class LLMZooTokenChooser(NextTokenChooser):
     def __call__(self, input_ids, scores):
 
         last_token_logits = scores.squeeze(0)
-        #print(f"last_token_logist:{last_token_logits},shape:{last_token_logits.shape}")
-        
         probs = torch.softmax(last_token_logits / self.temperature, dim=-1)
         token = int(torch.multinomial(probs, num_samples=1))
-        #print(f"new token:{token}")
-        ret_t = torch.as_tensor([[token]])
-        ret_t = ret_t.to(probs.device)
-        ret_p = probs.unsqueeze(0)
-        #print(f"new token:{ret_t},shape:{ret_t.shape}")
-        #print(f"next prob::{ret_p},shape:{ret_p.shape}")
-        return ret_t,ret_p
+        
+        return torch.as_tensor([[token]]).to(probs.device), probs.unsqueeze(0)
     
     @classmethod
     def from_pb(
